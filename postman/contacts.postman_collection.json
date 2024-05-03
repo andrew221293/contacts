@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "e956f086-31b3-4318-bb8b-9faf9d6f3635",
+		"name": "contacts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7645716"
+	},
+	"item": [
+		{
+			"name": "create new contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (pm.response.code === 201) {",
+							"    var responseData = pm.response.json();",
+							"",
+							"    pm.environment.set(\"contactId\", responseData.id);",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"John Doe\", \n    \"email\":\"johndoe@example.com\", \n    \"phone\":\"555-1234\"  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "user created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"John Doe\", \n    \"email\":\"johndoe@example.com\", \n    \"phone\":\"555-1234\"  \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 May 2024 01:22:32 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "113"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"cf5b7615-ed67-42dc-bfce-9e208df8c1d1\",\n    \"name\": \"John Doe\",\n    \"email\": \"johndoe@example.com\",\n    \"phone\": \"555-1234\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get contact",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/contacts/{{contactId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contacts",
+						"{{contactId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get contact",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/contacts/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"1234"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 May 2024 01:27:25 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "113"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"4624d690-8626-451d-a388-2cfa33ef863a\",\n    \"name\": \"John Doe\",\n    \"email\": \"johndoe@example.com\",\n    \"phone\": \"555-1234\"\n}"
+				},
+				{
+					"name": "contact not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/contacts/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"1234"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 May 2024 01:27:48 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Contact not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delete contact",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/contacts/{{contactId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contacts",
+						"{{contactId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "contact not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/contacts/12345",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"12345"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 May 2024 01:30:45 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Contact not found\"\n}"
+				},
+				{
+					"name": "delete contact",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/contacts/{{contactId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"{{contactId}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 May 2024 01:35:29 GMT"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Jane Doe\", \n    \"email\": \"janedoe@example.com\", \n    \"phone\": \"555-4321\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/contacts/{{contactId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contacts",
+						"{{contactId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "contact not found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Jane Doe\", \"email\": \"janedoe@example.com\", \"phone\": \"555-4321\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/contacts/{{contactId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"{{contactId}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 May 2024 01:38:01 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Contact not found\"\n}"
+				},
+				{
+					"name": "update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jane Doe\", \n    \"email\": \"janedoe@example.com\", \n    \"phone\": \"555-4321\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/contacts/{{contactId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"{{contactId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 May 2024 01:38:37 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "113"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"1b64111c-768d-4789-a80f-9100dce0d02c\",\n    \"name\": \"Jane Doe\",\n    \"email\": \"janedoe@example.com\",\n    \"phone\": \"555-4321\"\n}"
+				}
+			]
+		}
+	]
+}

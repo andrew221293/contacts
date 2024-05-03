@@ -62,7 +62,7 @@ The API has been designed with simplicity and rapid development in mind. Here ar
 - **Best Practices**: Throughout the development, we adhered to Go's best practices for naming conventions, code structuring, and error handling to ensure code quality and maintainability.
 - **Code Documentation**: Comprehensive documentation has been provided within the code to explain its functionality and important design decisions clearly.
 - **Development Tools**: Utilization of advanced IDE features and code generation tools like GoLand and Visual Studio Code has been essential in expediting the development process.
-- **Postman Collection**: A Postman collection is available to demonstrate how to interact with each endpoint effectively.
+- **Postman Collection**: A Postman collection is available to demonstrate how to interact with each endpoint effectively. You can find the collection [here](./postman/).
 
 ## Development Time Estimate
 
