@@ -61,7 +61,6 @@ func DeleteContact(w http.ResponseWriter, r *http.Request) {
 		delete(contacts, id)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusNoContent)
-		json.NewEncoder(w).Encode(map[string]string{"message": "Contact deleted successfully"})
 	} else {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusNotFound)
